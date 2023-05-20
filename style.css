@@ -4,7 +4,7 @@
 }
 
 body{
-    border:1px solid red;
+   
     padding: 10px;
 }
 
@@ -23,13 +23,11 @@ body>h1{
 }
 
 .latLongContainer{
-    border:1px solid red;
     display: flex;
     justify-content: space-between;
 }
 
 .enteredAddressTimezone{
-    border: 1px solid red;
     background-color: black;
     color: white;
     padding: 15px;
@@ -50,4 +48,19 @@ body>h1{
     width: 15%;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+.enteredAddressTimezoneContainer{
+    margin: 10px 0px 30px 0px;
+    border:  1px solid black;
+    padding:10px;
+    flex-direction:column;
+    gap:5px;
+    border: 1px solid white;
+    display: none;
+}
+
+
+.enteredAddressTimezoneContainer>h2{
+    margin-top: 10px;
 }
