@@ -39,12 +39,17 @@ async function getUserTimeZone(latitude,longitude) {
 }
 
 async function fetchAddressTimeZone(){
-    if(enteredAddress===""){
-       let alertMessage= document.createElement(p)
+    enteredAddressTimezoneContainer.style.display="flex"
+    let alertMessage= document.createElement("p")
+    if(enteredAddress.value===""){
+        enteredAddressTimezoneContainer.innerHTML=""
+     
        alertMessage.innerText="Please Enter Address!!"
        alertMessage.style.color="red"
+       enteredAddressTimezoneContainer.appendChild(alertMessage)
     }
     else{
+        enteredAddressTimezoneContainer.innerHTML=""
   let response= await fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(enteredAddress.value)}&apiKey=4e78775948b44ac6b90448c3aa886239`)
     
     let data= await response.json()
@@ -105,9 +110,13 @@ function displayUserTimeZone(data,str) {
 
    if(str==="EnteredAdrressTimeZone"){
 
+    let h2=document.createElement("h2")
+    h2.innerText="Your Result"
+    enteredAddressTimezoneContainer.appendChild(h2)
+
     let nameOfTimeZone=document.createElement("p")
     nameOfTimeZone.innerText=`Name Of TimeZone: ${data.timezone.name}`
-    currentTimeZoneContainer.appendChild(nameOfTimeZone)
+    enteredAddressTimezoneContainer.appendChild(nameOfTimeZone)
 
 
     let div=document.createElement("div")
@@ -118,35 +127,35 @@ function displayUserTimeZone(data,str) {
     longitudePoint.innerText=`Long: ${data.lon}`
     div.appendChild(latitudePoint)
     div.appendChild(longitudePoint)
-    currentTimeZoneContainer.appendChild(div)
+    enteredAddressTimezoneContainer.appendChild(div)
 
     let OffsetStd=document.createElement("p")
     OffsetStd.innerText=`Offset STD: ${data.timezone.offset_STD}`
-    currentTimeZoneContainer.appendChild(OffsetStd)
+    enteredAddressTimezoneContainer.appendChild(OffsetStd)
 
     let offsetSTDSeconds=document.createElement("p")
     offsetSTDSeconds.innerText=`Offset STD Seconds: ${data.timezone.offset_STD_seconds}`
-    currentTimeZoneContainer.appendChild(offsetSTDSeconds)
+    enteredAddressTimezoneContainer.appendChild(offsetSTDSeconds)
 
     let offsetDST=document.createElement("p")
     offsetDST.innerText=`Offset DST: ${data.timezone.offset_DST}`
-    currentTimeZoneContainer.appendChild(offsetDST)
+    enteredAddressTimezoneContainer.appendChild(offsetDST)
 
     let offsetDSTSeconds=document.createElement("p")
     offsetDSTSeconds.innerText=`Offset DST Seconds: ${data.timezone.offset_DST_seconds}`
-    currentTimeZoneContainer.appendChild(offsetDSTSeconds)
+    enteredAddressTimezoneContainer.appendChild(offsetDSTSeconds)
 
     let country=document.createElement("p")
     country.innerText=`Country: ${data.country}`
-    currentTimeZoneContainer.appendChild(country)
+    enteredAddressTimezoneContainer.appendChild(country)
 
     let postcode=document.createElement("p")
     postcode.innerText=`Postcode: ${data.postcode}`
-    currentTimeZoneContainer.appendChild(postcode)
+    enteredAddressTimezoneContainer.appendChild(postcode)
 
     let city=document.createElement("p")
     city.innerText=`City: ${data.city}`
-    currentTimeZoneContainer.appendChild(city)
+    enteredAddressTimezoneContainer.appendChild(city)
 
    }
 
